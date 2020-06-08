@@ -1,0 +1,8 @@
+@import './header';
+@import './footer';
+
+.main-section {
+  padding: 50px;
+  min-height: calc(100vh - 415px);
+  height: 100%;
+}

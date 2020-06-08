@@ -1,14 +1,21 @@
 import escapeStringRegexp from 'escape-string-regexp';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-
-import App from '../../App';
+import { StaticRouter } from 'react-router-dom';
+import AppRoot from '../../client/AppRoot';
 
 const renderMiddleware = () => (req, res) => {
   let html = req.html;
-  const htmlContent = ReactDOMServer.renderToString(<App />);
+
+  const context = {};
+
+  const htmlContent = ReactDOMServer.renderToString(
+    <StaticRouter location={req.url} context={context}>
+      <AppRoot />
+    </StaticRouter>
+  );
   const htmlReplacements = {
-    HTML_CONTENT: htmlContent,
+    HTML_CONTENT: htmlContent
   };
 
   Object.keys(htmlReplacements).forEach(key => {

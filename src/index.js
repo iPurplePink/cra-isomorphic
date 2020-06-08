@@ -14,10 +14,10 @@ if (module.hot) {
   });
 }
 
+const port = process.env.PORT || 3001;
+
 express()
   .use((req, res) => app.handle(req, res))
-  .listen(process.env.PORT || 3000, () => {
-    console.log(
-      `React SSR App is running: http://localhost:${process.env.PORT || 3000}`
-    );
+  .listen(port, () => {
+    console.log(`React SSR App is running: http://localhost:${port}`);
   });
